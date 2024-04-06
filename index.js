@@ -3,6 +3,7 @@ const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
 const {MONGODB_URL} = require('./config');
+const PORT = process.env.PORT || 4000;
 
 mongoose.connect(MONGODB_URL);
 mongoose.connection.on('connected', ()=> {
@@ -25,6 +26,6 @@ app.use(require('./routes/user_route'));
 app.use(require('./routes/post_route'));
 app.use(require('./routes/cart_route'));
 
-app.listen(4000, ()=> {
+app.listen(PORT, ()=> {
     console.log("Server has started...");
 });
