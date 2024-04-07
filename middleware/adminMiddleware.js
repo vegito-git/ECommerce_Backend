@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
-const {JWT_ADMIN} = require('../config');
+//const {JWT_ADMIN} = require('../config');
+const JWT_ADMIN = process.env.JWT_ADMIN;
 
 const mongoose = require('mongoose');
 const AdminModel = mongoose.model('AdminModel');

@@ -4,7 +4,8 @@ const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const UserModel = mongoose.model("UserModel");
-const {JWT_SECRET} = require('../config');
+//const {JWT_SECRET} = require('../config');
+const JWT_SECRET = process.env.JWT_SECRET;
 const adminRoute = require('../middleware/adminMiddleware'); 
 const protectedRoute = require('../middleware/protectedResource'); 
 

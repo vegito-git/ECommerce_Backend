@@ -2,10 +2,11 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
-const {MONGODB_URL} = require('./config');
+require('dotenv').config();
+//const {MONGODB_URL} = require('./config');
 const PORT = process.env.PORT || 4000;
 
-mongoose.connect(MONGODB_URL);
+mongoose.connect(process.env.MONGODB_URL);
 mongoose.connection.on('connected', ()=> {
     console.log("DB Connected...");
 });

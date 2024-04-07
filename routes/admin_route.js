@@ -4,7 +4,8 @@ const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const AdminModel = mongoose.model("AdminModel");
-const {JWT_ADMIN} = require('../config');
+//const {JWT_ADMIN} = require('../config');
+const JWT_ADMIN = process.env.JWT_ADMIN;
 const adminRoute = require('../middleware/adminMiddleware');
 
 router.post('/adminSignup', (req,res)=> {
