@@ -8,11 +8,11 @@ const protectedRoute = require('../middleware/protectedResource');
 //APIs to manage products for ADMIN................
 
 router.post("/createproduct",adminRoute, (req,res)=> {
-    const {productName,description, price, image, quantity} = req.body;
-    if(!productName || !description || !price || !image || !quantity){
+    const {productName,description, price, image, quantity, category} = req.body;
+    if(!productName || !description || !price || !image || !quantity || !category){
         res.status(400).json({error: "One or more mandatory fields are empty"});
     }
-    const postObj = new PostModel({productName, description, price, image, quantity})
+    const postObj = new PostModel({productName, description, price, image, quantity, category})
     postObj.save()
     .then((newProduct)=> {
         res.status(201).json({product: newProduct});
@@ -40,7 +40,7 @@ router.delete("/removeproduct/:productId", adminRoute, async (req,res)=> {
 });
 
 router.put("/updateproduct", adminRoute, async (req,res)=> {
-    const {productName,description, price, image, quantity} = req.body;
+    const {productName,description, price, image, quantity, category} = req.body;
     try {
         const itemFound = await PostModel.findOne({_id: req.body.productId})
         .populate("productName", "quantity");
@@ -48,7 +48,7 @@ router.put("/updateproduct", adminRoute, async (req,res)=> {
             res.status(400).json({error: "Item does not exist"});
         }
         //Proceed with the update
-        await itemFound.updateOne({productName, description, price, image, quantity});
+        await itemFound.updateOne({productName, description, price, image, quantity, category});
         res.status(200).json({result: itemFound});
     }catch (error){
         console.log(error);

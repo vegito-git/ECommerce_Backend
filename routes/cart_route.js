@@ -59,8 +59,8 @@ router.get("/myCartItems",protectedRoute, (req,res)=> {
 });
 
 router.post("/removeOneCartItem",protectedRoute, async (req,res)=> {
-    const {productId,quantity, price} = req.body;
-    if(!productId || !quantity || !price){
+    const {productId,quantity} = req.body;
+    if(!productId || !quantity){
         res.status(400).json({error: "One or more mandatory fields are empty"});
     }
     try {
